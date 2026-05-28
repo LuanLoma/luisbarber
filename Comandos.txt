@@ -1,0 +1,12 @@
+docker build -t luis-barber-db .
+
+docker run -d \
+  --name luis-barber-mariadb \
+  -p 3306:3306 \
+  -e MYSQL_ROOT_PASSWORD=rootpassword \
+  -e MYSQL_DATABASE=luis_barber \
+  -e MYSQL_USER=sa \
+  -e MYSQL_PASSWORD=suKy0529_ \
+  luis-barber-db
+
+docker exec -i luis-barber-mariadb mariadb -u sa -psuKy0529_ luis_barber < schema.sql
